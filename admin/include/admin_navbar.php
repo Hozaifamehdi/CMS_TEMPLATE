@@ -1,4 +1,10 @@
 <?php
+    session_start();
+?>
+
+
+<?php
+$user_name;
 if (isset($_SESSION['user_name'])) {
     $user_name = $_SESSION['user_name'];
 }
@@ -43,7 +49,7 @@ if (isset($_SESSION['user_name'])) {
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li>
-                    <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                 </li>
 
                 <li>

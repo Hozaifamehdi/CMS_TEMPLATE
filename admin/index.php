@@ -55,13 +55,15 @@ include("include/admin_navbar.php");
                             </div>
                             <div class="col-xs-9 text-right">
 
-                            <?php
-                                $post_query="select * from posts";
-                                $post_query_result=mysqli_query($isconnect, $post_query);
-                                $post_counts=mysqli_num_rows($post_query_result);
-                            ?>
+                                <?php
+                                $post_query = "select * from posts";
+                                $post_query_result = mysqli_query($isconnect, $post_query);
+                                $post_counts = mysqli_num_rows($post_query_result);
+                                ?>
 
-                                <div class='huge'><?php echo $post_counts;  ?></div>
+                                <div class='huge'>
+                                    <?php echo $post_counts; ?>
+                                </div>
                                 <div>Posts</div>
                             </div>
                         </div>
@@ -75,6 +77,8 @@ include("include/admin_navbar.php");
                     </a>
                 </div>
             </div>
+
+
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-green">
                     <div class="panel-heading">
@@ -84,16 +88,15 @@ include("include/admin_navbar.php");
                             </div>
                             <div class="col-xs-9 text-right">
 
-                            <?php
-                                $comments_query="select * from comment";
-                                $comments_query_result=mysqli_query($isconnect, $comments_query);
-                                $comments_counts=mysqli_num_rows($comments_query_result);
-                            ?>
+                                <?php
+                                $comments_query = "select * from comment";
+                                $comments_query_result = mysqli_query($isconnect, $comments_query);
+                                $comments_counts = mysqli_num_rows($comments_query_result);
+                                ?>
 
-
-
-
-                                <div class='huge'><?php echo $comments_counts;  ?></div>
+                                <div class='huge'>
+                                    <?php echo $comments_counts; ?>
+                                </div>
                                 <div>Comments</div>
                             </div>
                         </div>
@@ -107,6 +110,8 @@ include("include/admin_navbar.php");
                     </a>
                 </div>
             </div>
+
+
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-yellow">
                     <div class="panel-heading">
@@ -116,19 +121,20 @@ include("include/admin_navbar.php");
                             </div>
 
                             <?php
-                                $users_query="select * from users";
-                                $users_query_result=mysqli_query($isconnect, $users_query);
-                                $users_counts=mysqli_num_rows($users_query_result);
+                            $users_query = "select * from users";
+                            $users_query_result = mysqli_query($isconnect, $users_query);
+                            $users_counts = mysqli_num_rows($users_query_result);
                             ?>
 
-
                             <div class="col-xs-9 text-right">
-                                <div class='huge'><?php echo $users_counts;  ?></div>
+                                <div class='huge'>
+                                    <?php echo $users_counts; ?>
+                                </div>
                                 <div> Users</div>
                             </div>
                         </div>
                     </div>
-                    <a href="users.php">
+                    <a href="users.php?add_new_user=2">
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -146,13 +152,15 @@ include("include/admin_navbar.php");
                             </div>
 
                             <?php
-                                $catagories_query="select * from catagory";
-                                $catagories_query_result=mysqli_query($isconnect, $catagories_query);
-                                $catagories_counts=mysqli_num_rows($catagories_query_result);
+                            $catagories_query = "select * from catagory";
+                            $catagories_query_result = mysqli_query($isconnect, $catagories_query);
+                            $catagories_counts = mysqli_num_rows($catagories_query_result);
                             ?>
 
                             <div class="col-xs-9 text-right">
-                                <div class='huge'><?php echo $catagories_counts;  ?></div>
+                                <div class='huge'>
+                                    <?php echo $catagories_counts; ?>
+                                </div>
                                 <div>Categories</div>
                             </div>
                         </div>
@@ -169,12 +177,77 @@ include("include/admin_navbar.php");
         </div>
         <!-- /.row -->
 
+        <!-- Active posts  -->
+        <?php
+
+        $public_post_query = "SELECT * FROM `posts` WHERE `post_status` = 1";
+        $public_post_query_result = mysqli_query($isconnect, $public_post_query);
+        $public_post_counts = mysqli_num_rows($public_post_query_result);
+
+        ?>
+
+        <!-- Hidden posts -->
+
+        <?php
+
+        $hide_post_query = "SELECT * FROM `posts` WHERE `post_status` = 0";
+        $hide_post_query_result = mysqli_query($isconnect, $hide_post_query);
+        $hide_post_counts = mysqli_num_rows($hide_post_query_result);
+
+        ?>
+
+
+
+
+        <div class="row">
+
+            <script type="text/javascript">
+                google.charts.load('current', { 'packages': ['bar'] });
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Graph', 'Number of items'],
+
+                        <?php
+
+                        $element_text = ['Active posts', 'Hiden posts', 'Comments', 'Users', 'Catagories'];
+                        $element_count = [$public_post_counts, $hide_post_counts, $comments_counts, $users_counts, $catagories_counts];
+
+                        for ($i = 0; $i < 5; $i++) {
+                            echo "['{$element_text[$i]}'" . "," . "{$element_count[$i]}],";
+                        }
+                        ?>
+                    ]);
+
+                    var options = {
+                        chart: {
+                            title: 'Engagements',
+                            subtitle: 'Posts, Users, and comments',
+                        }
+                    };
+
+                    var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+                    chart.draw(data, google.charts.Bar.convertOptions(options));
+                }
+            </script>
+
+            <div id="columnchart_material" style="width: '1200px'; height: 750px;"></div>
+
+        </div>
+
+
 
 
     </div>
     <!-- /.container-fluid -->
 
 </div>
+
+
+
+
 <!-- /#page-wrapper -->
 
 </div>
