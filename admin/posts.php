@@ -3,6 +3,7 @@
 include("include/admin_header.php");
 ?>
 
+
 <!-- Navigation bar -->
 <?php
 include("include/admin_navbar.php");
@@ -65,7 +66,7 @@ include("include/admin_navbar.php");
                             <thead>
                                 <tr>
                                     <strong>
-                                        <td>Id</td>
+                                        <!-- <td>Id</td> -->
                                         <td>Author</td>
                                         <td>Title</td>
                                         <td>Content</td>
@@ -75,6 +76,8 @@ include("include/admin_navbar.php");
                                         <td>Status</td>
                                         <td>Comment</td>
                                         <td>Date</td>
+                                        <td>Edit</td>
+                                        <td>Delete</td>
                                     </strong>
                                 </tr>
                             </thead>
@@ -96,9 +99,9 @@ include("include/admin_navbar.php");
                                     $Date = $row['post_time'];
                                     ?>
                                     <tr>
-                                        <td>
-                                            <?php echo $Id; ?>
-                                        </td>
+                                        <!-- <td>
+                                            <?php // echo $Id; ?>
+                                        </td> -->
                                         <td>
                                             <?php echo $Author; ?>
                                         </td>
@@ -147,8 +150,6 @@ include("include/admin_navbar.php");
         </div>
         <!-- /.row -->
 
-
-        
 
         <!-- This code of php is used to show catagories in website -->
 

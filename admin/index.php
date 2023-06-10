@@ -1,6 +1,6 @@
 <!-- Header  -->
 <?php
-session_start();
+// session_start();
 ?>
 <?php
 include("include/admin_header.php");
@@ -176,6 +176,7 @@ include("include/admin_navbar.php");
             </div>
         </div>
         <!-- /.row -->
+        
 
         <!-- Active posts  -->
         <?php
@@ -195,9 +196,6 @@ include("include/admin_navbar.php");
         $hide_post_counts = mysqli_num_rows($hide_post_query_result);
 
         ?>
-
-
-
 
         <div class="row">
 
@@ -233,11 +231,9 @@ include("include/admin_navbar.php");
                 }
             </script>
 
-            <div id="columnchart_material" style="width: '1200px'; height: 750px;"></div>
+            <div id="columnchart_material" style="width: 'auto'; height: 500px;"></div>
 
         </div>
-
-
 
 
     </div>
@@ -245,20 +241,4 @@ include("include/admin_navbar.php");
 
 </div>
 
-
-
-
-<!-- /#page-wrapper -->
-
-</div>
-<!-- /#wrapper -->
-
-<!-- jQuery -->
-<script src="js/jquery.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
-
-</body>
-
-</html>
+<?php  include("include/admin_footer.php");   ?>

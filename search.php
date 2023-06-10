@@ -144,6 +144,132 @@ if (isset($_POST['comment'])) {
             <?php } ?>
 
 
+
+
+
+
+
+
+
+
+            <!-- upadte_my_post -->
+
+            <?php
+            if (isset($_GET['update_my_post'])) {
+
+                $post_id = $_GET['update_my_post'];
+
+                if (isset($_POST['comment'])) {
+                    $post_comment = $_POST['post_comment'];
+                    // Need table to posts comment;
+                    $comment_query = "select * from posts where comment=$post_comment";
+                    $comment_result = mysqli_query($isconnect, $comment_query);
+                }
+
+
+                $individual_query = "SELECT * FROM `posts` WHERE post_id=$post_id";
+
+                $individual_result = mysqli_query($isconnect, $individual_query);
+
+                $row = mysqli_fetch_assoc($individual_result);
+                $row_id = $row['post_id'];
+                $row_title = $row['post_title'];
+                $row_catagory = $row['post_catagory_id'];
+                $row_author = $row['post_author'];
+                $row_content = $row['post_content'];
+                $row_time = $row['post_time'];
+                $row_image = $row['post_image'];
+                $row_status = $row['post_status'];
+
+
+                ?>
+                <h2>
+                    <a href="#">
+                        <?php echo "$row_title" ?>
+                    </a>
+                </h2>
+                <p class="lead">
+                    by <a href="index.php">
+                        <?php
+                        echo "$row_author";
+                        ?>
+                    </a>
+                </p>
+
+                <p><span class="glyphicon glyphicon-time"></span>Posted on
+                    <?php
+                    echo "$row_time";
+                    ?>
+                </p>
+                <hr>
+                <img class="img-responsive" src="image/<?php echo $row_image; ?>" alt="" width="800px" height="350px">
+                <hr>
+                <p>
+                    <?php
+                    echo "$row_content";
+                    ?>
+                </p>
+
+                <form action="search.php?row_id=<?php echo $row_id; ?> &row_title=<?php echo $row_title; ?>" method="POST">
+                    <div class="mb-6">
+                        <label for="author" class="form-label">Author</label>
+                        <input type="text" name="author_name" class="form-control" required="required"
+                            placeholder="ramesh kumar">
+                    </div>
+
+                    <div class="mb-6">
+                        <!-- <br/> -->
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" required="required"
+                            placeholder="rameshkumar@gmail.com">
+                    </div>
+
+                    <div class="mb-6">
+                        <!-- <label for="email" class="form-label">Leave a comment</label> -->
+                        <br />
+                        <textarea name="post_comment" required="required" class="form-control" aria-describedby="emailHelp"
+                            rows="4" placeholder="Leave a comment"></textarea>
+
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <button class="btn btn-primary" name="comment">Comment</button>
+                    </div>
+                </form>
+                <hr />
+                <?php
+
+                $comment_query = "SELECT * FROM `comment` WHERE `comment_post_id`= '$row_id' AND `comment_status` = 1";
+
+                $comment_result = mysqli_query($isconnect, $comment_query);
+
+                while ($comment_row = mysqli_fetch_assoc($comment_result)) {
+                    $comment_author = $comment_row['comment_author'];
+                    $comment_content = $comment_row['comment_content'];
+                    $comment_date = $comment_row['comment_date'];
+                    ?>
+
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <?php echo $comment_author; ?>
+                            <small>
+                                <?php echo $comment_date; ?>
+                            </small>
+                        </h4>
+                        <?php echo $comment_content; ?>
+                    </div>
+                    <hr />
+                    <?php
+                }
+            }
+            ?>
+
+            <!-- upadte_my_post -->
+
+
+
+            <!-- individual post -->
+
             <?php
             if (isset($_GET['individual_post'])) {
 
@@ -155,7 +281,6 @@ if (isset($_POST['comment'])) {
                     $comment_query = "select * from posts where comment=$post_comment";
                     $comment_result = mysqli_query($isconnect, $comment_query);
                 }
-
 
 
                 $individual_query = "SELECT * FROM `posts` WHERE post_id=$post_id";
@@ -255,6 +380,9 @@ if (isset($_POST['comment'])) {
                 }
             }
             ?>
+
+            <!-- individual post -->
+
 
             <?php
             if (isset($_GET['cat_title'])) {

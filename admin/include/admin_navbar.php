@@ -2,7 +2,6 @@
     session_start();
 ?>
 
-
 <?php
 $user_name;
 if (isset($_SESSION['user_name'])) {
