@@ -52,15 +52,83 @@ include("include/admin_navbar.php");
                         }
                         ?>
 
+
+
                         <?php
                         if (isset($_GET['edit'])) {
                             include("include/edit_posts.php");
                         }
-
                         ?>
-                        <h3 class="page-header">
-                            All posts
+
+
+                        <form action="#" method="post">
+                            <select name="choice" style="padding:7px 2px;">
+                                <option value="All">All</option>
+                                <option value="Published">Published</option>
+                                <option value="Unpublished">Unpublished</option>
+                            </select>
+                            <button name="post_submit_choice" class="btn btn-primary">Get posts</button>
+                        </form>
+
+
+
+
+
+                        <h3 class="">
+                            All
+                            <?php
+                            if (isset($_SESSION['post_choice'])) {
+
+                                $posts_choice = $_SESSION['post_choice'];
+
+                                switch ($posts_choice) {
+                                    case 'Published':
+                                        echo " published posts";
+                                        break;
+
+                                    case 'Unpublished':
+                                        echo " unpublished posts";
+                                        break;
+
+                                    default:
+                                        echo " posts";
+                                        break;
+                                }
+
+                            } else {
+                                echo "posts";
+                            }
+                            ?>
                         </h3>
+
+                        <!-- Adding choice function to select as published unpublished and all -->
+                        <?php
+                        $posts_query = "select * from posts";
+
+                        if (isset($_POST['post_submit_choice'])) {
+                            $post_choice = $_POST['choice'];
+
+                            switch ($post_choice) {
+                                case 'Published':
+                                    $posts_query = "select * from posts where post_status=1";
+                                    $_SESSION['post_choice'] = $post_choice;
+
+                                    break;
+
+                                case 'Unpublished':
+                                    $posts_query = "select * from posts where post_status=0";
+                                    $_SESSION['post_choice'] = $post_choice;
+                                    break;
+
+                                default:
+                                    $posts_query = "select * from posts";
+                                    $_SESSION['post_choice'] = $post_choice;
+                                    break;
+                            }
+
+                        }
+                        ?>
+
 
                         <table class="table table-bordered table-hover">
                             <thead>
@@ -84,7 +152,6 @@ include("include/admin_navbar.php");
 
                             <tbody>
                                 <?php
-                                $posts_query = "select * from posts";
                                 $result = mysqli_query($isconnect, $posts_query);
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     $Id = $row['post_id'];

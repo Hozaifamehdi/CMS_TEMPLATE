@@ -30,9 +30,7 @@ function comment_decriment($isconnect, $comment_post_id)
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header">
-                    All comment
-                </h3>
+
                 <?php
                 if (isset($_GET['approve_status'])) {
 
@@ -95,6 +93,75 @@ function comment_decriment($isconnect, $comment_post_id)
                 }
                 ?>
 
+
+
+                <?php
+                $comment_query = "select * from comment";
+
+                if (isset($_POST['submit_choice'])) {
+
+                    $comment_choice = $_POST['choice'];
+
+                    switch ($comment_choice) {
+                        case 'Published':
+                            $comment_query = "select * from comment where comment_status=1";
+                            $_SESSION['choice'] = $comment_choice;
+                            break;
+
+                        case 'Unpublished':
+                            $comment_query = "select * from comment where comment_status=0";
+                            $_SESSION['choice'] = $comment_choice;
+                            break;
+
+                        default:
+                            $comment_query = "select * from comment";
+                            $_SESSION['choice'] = $comment_choice;
+                            break;
+                    }
+                    // header("location:comment.php");
+                
+                }
+                ?>
+
+
+                <form action="#" method="post">
+                    <select name="choice" style="padding:7px 2px;">
+                        <option value="All">All</option>
+                        <option value="Published">Published</option>
+                        <option value="Unpublished">Unpublished</option>
+                    </select>
+                    <button name="submit_choice" class="btn btn-primary">Get comments</button>
+                </form>
+
+                <h3 class="">
+                    All
+                    <?php
+                    if (isset($_SESSION['choice'])) {
+
+                        $comment_choice = $_SESSION['choice'];
+
+                        switch ($comment_choice) {
+                            case 'Published':
+                                echo " published comments";
+                                break;
+
+                            case 'Unpublished':
+                                echo " unpublished comments";
+                                break;
+
+                            default:
+                                echo " comments";
+                                break;
+                        }
+
+                    } else {
+                        echo "comments";
+                    }
+                    ?>
+                </h3>
+
+
+
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
@@ -115,8 +182,8 @@ function comment_decriment($isconnect, $comment_post_id)
                     </thead>
 
                     <tbody>
+
                         <?php
-                        $comment_query = "select * from comment";
                         $comment_result = mysqli_query($isconnect, $comment_query);
 
                         while ($row = mysqli_fetch_assoc($comment_result)) {
