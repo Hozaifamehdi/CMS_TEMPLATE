@@ -52,6 +52,7 @@ function comment_decriment($isconnect, $comment_post_id)
                     }
                 }
 
+
                 if (isset($_GET['unapprove_status'])) {
 
                     $status_approve = $_GET['unapprove_status'];
@@ -71,6 +72,7 @@ function comment_decriment($isconnect, $comment_post_id)
                     }
                 }
                 ?>
+
 
                 <?php
                 if (isset($_GET['delete'])) {
@@ -97,7 +99,7 @@ function comment_decriment($isconnect, $comment_post_id)
                     <thead>
                         <tr>
                             <strong>
-                                <td>Id</td>
+                                <!-- <td>Id</td> -->
                                 <td>Post Id</td>
                                 <td>Post title</td>
                                 <td>Author</td>
@@ -134,9 +136,9 @@ function comment_decriment($isconnect, $comment_post_id)
                             $comment_date = $row['comment_date'];
                             ?>
                             <tr>
-                                <td>
-                                    <a href="../search.php?individual_post=<?php echo $comment_post_id; ?>"><?php echo $comment_id; ?></a>
-                                </td>
+                                <!-- <td>
+                                    <a href="../search.php?individual_post=<?php //echo $comment_post_id; ?>"><?php // echo $comment_id; ?></a>
+                                </td> -->
                                 <td>
                                     <a href="../search.php?individual_post=<?php echo $comment_post_id; ?>"><?php echo $comment_post_id; ?></a>
                                 </td>

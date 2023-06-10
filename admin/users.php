@@ -17,7 +17,7 @@ include("include/admin_navbar.php");
             <div class="col-lg-12">
 
 
-                <!-- This portion of code is used to redirect to edit_user_infor.php page to    "edit user information"       -->
+                <!-- This portion of code is used to redirect to edit_user_infor.php page to    "edit user information"   -->
                 <?php
 
                 if (isset($_GET['edit'])) {
@@ -53,10 +53,6 @@ include("include/admin_navbar.php");
                         // code end
 
 
-
-
-
-
                         default:
                             ?>
 
@@ -64,10 +60,6 @@ include("include/admin_navbar.php");
                                 All user
                                 <small>Database</small>
                             </h1>
-
-
-
-
 
 
                             <!-- This portion of code is used to delete a user information -->
@@ -141,12 +133,13 @@ include("include/admin_navbar.php");
                             <!-- Code end  -->
 
 
+
                             <!-- This portion of code used for view all users  -->
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <strong>
-                                            <td>User Id </td>
+                                            <!-- <td>User Id </td> -->
                                             <td>Name</td>
                                             <td>Email id </td>
                                             <td>Password</td>
@@ -177,9 +170,9 @@ include("include/admin_navbar.php");
                                         $user_status = $row['user_status'];
                                         ?>
                                         <tr>
-                                            <td>
-                                                <?php echo $user_id; ?>
-                                            </td>
+                                            <!-- <td>
+                                                <?php //echo $user_id; ?>
+                                            </td> -->
 
                                             <td>
                                                 <?php echo $user_name; ?>

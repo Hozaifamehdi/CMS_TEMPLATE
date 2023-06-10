@@ -97,9 +97,8 @@ if (isset($_POST['post'])) {
     </div>
 
     <div class="mb-6">
-        <label for="post_content" class="form-label">Post Content</label>
-        <textarea name="post_content" required="required" class="form-control" aria-describedby="emailHelp"
-            rows="5"></textarea>
+        <label for="your_summernote" class="form-label">Post Content</label>
+        <textarea name="post_content" required="required" class="form-control" id="your_summernote" rows="5"></textarea>
     </div>
 
 

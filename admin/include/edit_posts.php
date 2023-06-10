@@ -36,7 +36,7 @@ if (isset($_GET['edit'])) {
 if (isset($_POST["edit_post"])) {
 
     $query_result;
-
+    // $post_id=$POST["edit_post"];
     $post_catagory_id = $_POST['post_catagory_id'];
     $post_author = $_POST['post_author'];
     $post_title = $_POST['post_title'];
@@ -75,7 +75,7 @@ if (isset($_POST['edit_post'])) {
         echo "
             <h1 class='page-header'>
             Post Updated
-            <small>Sucessfully</small>
+            <small>Sucessfully  <a href='../search.php?update_my_post=$editId'>View post</a></small>
             </h1>";
 
     } else {
@@ -128,9 +128,8 @@ if (isset($_POST['edit_post'])) {
     </div>
 
     <div class="mb-6">
-        <label for="post_content" class="form-label">Post Content</label>
-        <textarea name="post_content" required="required" class="form-control" aria-describedby="emailHelp"
-            rows="5"><?php echo $post_content; ?></textarea>
+        <label for="your_summernote" class="form-label">Post Content</label>
+        <textarea name="post_content" required="required" class="form-control" id="your_summernote" rows="5"><?php echo $post_content; ?></textarea>
     </div>
 
     <br />

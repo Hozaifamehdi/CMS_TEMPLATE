@@ -1,7 +1,8 @@
 <!-- to connect database -->
 <?php
-session_start();
+// session_start();
 ?>
+
 <?php
 include("include/db.php");
 ?>
@@ -13,8 +14,6 @@ include("include/header.php");
 <?php
 include("include/navigation.php");
 ?>
-
-
 
 
 <!-- Page Content -->
