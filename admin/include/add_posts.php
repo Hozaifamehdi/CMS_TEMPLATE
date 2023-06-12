@@ -17,6 +17,7 @@ if (isset($_POST["post"])) {
     $post_author = $_POST['post_author'];
     $post_title = $_POST['post_title'];
     $post_content = $_POST['post_content'];
+    $post_content = mysqli_real_escape_string($isconnect, $post_content);
     $post_tag = $_POST['post_tag'];
     // $post_image = $_POST['post_image'];
 
