@@ -1,3 +1,5 @@
+<!-- In this registration file 1 thing must be added which is if user phone number or email is duplicate then it must throw message and user should understand this message and respond on the basis of message -->
+
 <?php include "include/db.php"; ?>
 <?php include "include/header.php"; ?>
 
@@ -42,30 +44,34 @@ if (isset($_POST['submit'])) {
                             }
                         }
                     ?>
-                    <div class="form-wrap">
+                    <!-- <div> -->
+                    <div class="form-wrap" style="padding:20px 20vw">
                         <h1>Register</h1>
                         <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
                             <div class="form-group">
                                 <label for="username" class="sr-only">username</label>
                                 <input type="text" name="username" id="username" class="form-control"
-                                    placeholder="Enter Desired Username">
+                                    placeholder="Enter Desired Username" required="required">
                             </div>
                             <div class="form-group">
                                 <label for="email" class="sr-only">Email</label>
                                 <input type="email" name="email" id="email" class="form-control"
-                                    placeholder="somebody@example.com">
+                                    placeholder="somebody@example.com" required="required">
                             </div>
                             <div class="form-group">
                                 <label for="password" class="sr-only">Password</label>
                                 <input type="password" name="password" id="key" class="form-control"
-                                    placeholder="Password">
+                                    placeholder="Password" required="required">
                             </div>
 
                             <input type="submit" name="submit" id="btn-login" class="btn btn-custom btn-lg btn-block"
                                 value="Register">
                         </form>
-
+                        <br/>
+                        <br/>
+                        C all copyright reserved
                     </div>
+                    <!-- </div> -->
                 </div> <!-- /.col-xs-12 -->
             </div> <!-- /.row -->
         </div> <!-- /.container -->
