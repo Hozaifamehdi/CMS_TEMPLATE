@@ -41,11 +41,11 @@ include("include/admin_navbar.php");
         </div>
 
 
-
         <!-- /.row -->
 
 
         <div class="row">
+
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -56,6 +56,38 @@ include("include/admin_navbar.php");
                             <div class="col-xs-9 text-right">
 
                                 <?php
+                                // if (isset($_GET['user_role'])) {
+                                //     $user_role = $_GET['user_role'];
+
+                                    // switch ($user_role) {
+                                    //     case 'Contributor':
+                                    //         $email_id=$_GET['contributor'];
+                                            
+                                    //         $contributor_query="SELECT * from `users` WHERE `user_email`='$email_id'";
+                                    //         $contributor_query_result=mysqli_query($isconnect, $contributor_query);
+                                    //         $contributor_info=mysqli_fetch_assoc($contributor_query_result);
+                                            
+
+
+                                    //         $post_query = "SELECT * FROM `posts` WHERE `post_author` = 'Hozaifa mehdi'";
+
+                                    //         # code...
+                                    //         break;
+
+                                    //     case 'Sub-admin':
+                                    //         #code 
+                                    //         $email_id=$_GET['Sub-admin'];
+
+
+                                    //         break;
+                                    //     case 'Admin':
+                                    //         #code 
+                                    //         $email_id=$_GET['Admin'];
+                                    //         break;
+                                    // }
+                                // }
+
+
                                 $post_query = "select * from posts";
                                 $post_query_result = mysqli_query($isconnect, $post_query);
                                 $post_counts = mysqli_num_rows($post_query_result);
@@ -89,6 +121,7 @@ include("include/admin_navbar.php");
                             <div class="col-xs-9 text-right">
 
                                 <?php
+                                
                                 $comments_query = "select * from comment";
                                 $comments_query_result = mysqli_query($isconnect, $comments_query);
                                 $comments_counts = mysqli_num_rows($comments_query_result);
@@ -121,6 +154,7 @@ include("include/admin_navbar.php");
                             </div>
 
                             <?php
+
                             $users_query = "select * from users";
                             $users_query_result = mysqli_query($isconnect, $users_query);
                             $users_counts = mysqli_num_rows($users_query_result);
@@ -152,6 +186,8 @@ include("include/admin_navbar.php");
                             </div>
 
                             <?php
+
+
                             $catagories_query = "select * from catagory";
                             $catagories_query_result = mysqli_query($isconnect, $catagories_query);
                             $catagories_counts = mysqli_num_rows($catagories_query_result);
@@ -176,7 +212,7 @@ include("include/admin_navbar.php");
             </div>
         </div>
         <!-- /.row -->
-        
+
 
         <!-- Active posts  -->
         <?php
@@ -241,4 +277,4 @@ include("include/admin_navbar.php");
 
 </div>
 
-<?php  include("include/admin_footer.php");   ?>
+<?php include("include/admin_footer.php"); ?>
