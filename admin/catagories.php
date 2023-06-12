@@ -15,7 +15,7 @@ include("include/admin_navbar.php");
         <div class="row">
             <div class="col-lg-12">
 
-            <h3 class="page-header">
+                <h3 class="page-header">
                     All catagories
                 </h3>
             </div>
@@ -49,21 +49,11 @@ include("include/admin_navbar.php");
             }
         }
         ?>
-        <?php
-        if (isset($_POST['update'])) {
-            $cat_title = $_POST['cat_title'];
-            $cat_id;
-            $update_query = "SELECT * FROM catagory WHERE cat_title=$cat_title";
 
-            $result = mysqli_query($isconnect, $update_query);
-            while ($row = mysqli_fetch_assoc($result)) {
-                $cat_id = $row['cat_id'];
-                echo $cat_id;
-            }
-            $Update_Catagories = "UPDATE catagory SET cat_title = $cat_title, WHERE cat_id=$cat_id";
-            mysqli_query($isconnect, $UpdateCatagories);
-        }
-        ?>
+
+
+
+
         <!-- This code is used to delete catagory into catagory table -->
         <?php
         if (isset($_GET['delete'])) {
@@ -74,6 +64,23 @@ include("include/admin_navbar.php");
             header('location:catagories.php');
         }
         ?>
+
+
+
+        <!-- To update catagory data base on the basis of cat_id -->
+        <?php
+            if(isset($_POST['cat_update'])){
+                $title=$_POST['update_title'];
+                $cat_id=$_GET['cat_id'];
+                $Update_Catagories = "UPDATE `catagory` SET `cat_title` = '$title' WHERE `catagory`.`cat_id` = $cat_id";
+                $updated_catagories=mysqli_query($isconnect, $Update_Catagories);
+                ?>
+                <h3> <?php echo $title; ?> updated sucessfully</h3>
+                <?php
+            }
+        ?>
+
+
 
         <!-- for add catagories  -->
         <div class="col-xs-6">
@@ -88,31 +95,32 @@ include("include/admin_navbar.php");
             </form>
         </div>
 
+
+
         <!-- for edit catagories -->
         <div class="col-xs-6">
-            <form action="catagories.php" method="post">
-                <label for="cat_title">Edit catagories</label>
+            <?php
+            if (isset($_GET['update'])) {
+                $cat_id=$_GET['update'];
+                $cat_title = $_GET['catagory_title'];
+                ?>
+                <form action="catagories.php?cat_id=<?php echo $cat_id; ?>" method="post">
+                    <label for="cat_title">Edit catagories</label>
 
-                <?php
-                if (isset($_GET['update'])) {
-
-                    $cat_title = $_GET['update'];
-                    // $cat_id=$_POST['cat_id'];
-                    ?>
                     <div class="form-group">
-                        <input type="text" name="cat_title" class="form-control" required="required"
+                        <input type="text" name="update_title" class="form-control" required="required"
                             value="<?php echo $cat_title; ?>">
                     </div>
-                <?php
-                    // header('location:catagories.php');
-                }
-                ?>
-
+                    <?php
+            }
+            ?>
                 <div class="form-group">
-                    <button class="btn btn-primary" name="update">Edit catagories</button>
+                    <button class="btn btn-primary" name="cat_update">Edit catagories</button>
                 </div>
             </form>
         </div>
+
+
 
         <!-- This code of php is used to show catagories in website -->
         <?php
@@ -132,6 +140,8 @@ include("include/admin_navbar.php");
                 </thead>
 
                 <tbody>
+
+                
                     <!-- This code of php is used to print catagories on website -->
                     <?php
                     while ($row = mysqli_fetch_assoc($catagory_query)) {
@@ -142,7 +152,7 @@ include("include/admin_navbar.php");
                         echo "<th> $catagory_title</th>";
                         echo "<th><a href='catagories.php?delete=$catagory_id'>delete</a></th>";
 
-                        echo "<th><a href='catagories.php?update=$catagory_title'>Edit</a></th>";
+                        echo "<th><a href='catagories.php?update=$catagory_id & catagory_title=$catagory_title'>Edit</a></th>";
                         echo "</tr>";
                     }
                     ?>

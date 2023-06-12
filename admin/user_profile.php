@@ -17,7 +17,9 @@
 ?>
 
 
-<?php
+<?php  
+
+
 // $query_result;
 if (isset($_GET["user_id"])) {
 

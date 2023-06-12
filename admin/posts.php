@@ -144,6 +144,7 @@ include("include/admin_navbar.php");
                                         <td>Status</td>
                                         <td>Comment</td>
                                         <td>Date</td>
+                                        <td>Views</td>
                                         <td>Edit</td>
                                         <td>Delete</td>
                                     </strong>
@@ -164,6 +165,7 @@ include("include/admin_navbar.php");
                                     $Status = $row['post_status'];
                                     $Comment = $row['post_comment'];
                                     $Date = $row['post_time'];
+                                    $visit= $row['post_visit_counts'];
                                     ?>
                                     <tr>
                                         <!-- <td>
@@ -194,6 +196,9 @@ include("include/admin_navbar.php");
                                         </td>
                                         <td>
                                             <?php echo $Date; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $visit; ?>
                                         </td>
                                         <td>
                                             <a href="posts.php?edit=<?php echo $Id; ?>">Edit</a>

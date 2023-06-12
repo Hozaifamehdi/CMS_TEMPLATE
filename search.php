@@ -144,15 +144,7 @@ if (isset($_POST['comment'])) {
             <?php } ?>
 
 
-
-
-
-
-
-
-
-
-            <!-- upadte_my_post -->
+            <!-- update_my_post -->
 
             <?php
             if (isset($_GET['update_my_post'])) {
@@ -164,6 +156,11 @@ if (isset($_POST['comment'])) {
                     // Need table to posts comment;
                     $comment_query = "select * from posts where comment=$post_comment";
                     $comment_result = mysqli_query($isconnect, $comment_query);
+
+                    //handling resubmission problem 
+                    if($comment_result){
+                        header("location:search.php?individual_post=$row_id");
+                    }
                 }
 
 
@@ -296,7 +293,17 @@ if (isset($_POST['comment'])) {
                 $row_time = $row['post_time'];
                 $row_image = $row['post_image'];
                 $row_status = $row['post_status'];
+                $post_visit_counts=$row['post_visit_counts'];
                 if ($row_status == 1) {
+
+                    // Counting number of visit in a post
+
+                    $post_visit_counts=$post_visit_counts+1;
+
+                    $post_visit_counts="UPDATE `posts` SET `post_visit_counts` = '$post_visit_counts' WHERE `posts`.`post_id` = $row_id";
+                    $post_visit_query=mysqli_query($isconnect, $post_visit_counts);
+
+
 
                     ?>
                     <h2>
@@ -445,14 +452,14 @@ if (isset($_POST['comment'])) {
             <!-- First Blog Post -->
 
             <!-- Pager -->
-            <ul class="pager">
+            <!-- <ul class="pager">
                 <li class="previous">
                     <a href="#">&larr; Older</a>
                 </li>
                 <li class="next">
                     <a href="#">Newer &rarr;</a>
                 </li>
-            </ul>
+            </ul> -->
 
         </div>
         <!-- Sidebar -->
