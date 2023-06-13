@@ -24,13 +24,10 @@ if (isset($_POST["post"])) {
     $post_image = $_FILES['post_image']['name'];
     $post_image_temp = $_FILES['post_image']['tmp_name'];
     $post_status = $_POST['post_status'];
-    // $post_time = $_POST['post_time'];
-    $post_time = date('d-m-y');
-    // $post_catagory_id=$_POST[''];
 
     move_uploaded_file($post_image_temp, "../image/$post_image");
 
-    $post_query = "INSERT INTO `posts` (`post_catagory_id`, `post_title`, `post_author`, `post_time`, `post_image`, `post_content`, `post_tag`, `post_status`) VALUES ('$post_catagory_id', '$post_title', '$post_author', '$post_time', '$post_image', '$post_content', '$post_tag ', '$post_status')";
+    $post_query = "INSERT INTO `posts` (`post_catagory_id`, `post_title`, `post_author`, `post_image`, `post_content`, `post_tag`, `post_status`) VALUES ('$post_catagory_id', '$post_title', '$post_author', '$post_image', '$post_content', '$post_tag ', '$post_status')";
 
     $query_result = mysqli_query($isconnect, $post_query);
 }
@@ -97,10 +94,13 @@ if (isset($_POST['post'])) {
             name="post_title">
     </div>
 
+
+
     <div class="mb-6">
-        <label for="your_summernote" class="form-label">Post Content</label>
-        <textarea name="post_content" required="required" class="form-control" id="your_summernote" rows="5"></textarea>
+        <label for="summernote" class="form-label">Post Content</label>
+        <textarea name="post_content" required="required" class="form-control" id="summernote" rows="5"></textarea>
     </div>
+
 
 
     <div class="mb-6">
@@ -114,12 +114,6 @@ if (isset($_POST['post'])) {
         <label for="post_status" class="form-label">Post Status</label>
         <input type="text" class="form-control" id="post_status" aria-describedby="emailHelp" required="required"
             name="post_status">
-    </div>
-
-    <div class="mb-6">
-        <label for="post_time" class="form-label">Post Time</label>
-        <input type="text" class="form-control" id="post_time" aria-describedby="emailHelp" required="required"
-            name="post_time">
     </div>
 
     <div class="mb-6">

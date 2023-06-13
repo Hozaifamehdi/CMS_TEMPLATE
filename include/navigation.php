@@ -26,30 +26,30 @@
 
                 <?php
                 if (isset($_SESSION['user_name']) && !isset($_SESSION['user_status'])) {
-                    
-                    $user_email=$_SESSION['user_email'];
-                    
-                    $user_role_query="SELECT * FROM `users` WHERE `user_email` LIKE '$user_email'";
+
+                    $user_email = $_SESSION['user_email'];
+
+                    $user_role_query = "SELECT * FROM `users` WHERE `user_email` LIKE '$user_email'";
 
                     // SELECT * FROM `users` WHERE `user_email` LIKE '$user_email';
-                    
-                    $user_role_result=mysqli_query($isconnect, $user_role_query);
+                
+                    $user_role_result = mysqli_query($isconnect, $user_role_query);
 
-                    $user_role_row=mysqli_fetch_assoc($user_role_result);
-                    $user_role=$user_role_row['user_role'];
+                    $user_role_row = mysqli_fetch_assoc($user_role_result);
+                    $user_role = $user_role_row['user_role'];
 
-                    if($user_role=='subscriber'){
-                    ?>
+                    if ($user_role == 'subscriber') {
+                        ?>
 
                         <li><a href="admin/user_profile.php">Profile</a></li>
 
-                    <?php
-                    }elseif($user_role=='Admin'){
-                        ?>
-    
-                            <li><a href="admin?user_role=<?php echo $user_role; ?> & Admin=<?php echo $user_email?>">Admin</a></li>
                         <?php
-    
+                    } elseif ($user_role == 'Admin') {
+                        ?>
+
+                        <li><a href="admin?user_role=<?php echo $user_role; ?> & Admin=<?php echo $user_email ?>">Admin</a></li>
+                        <?php
+
                     }
                 }
 
@@ -58,6 +58,14 @@
                 <!-- <li><a href="admin">Admin</a></li> -->
 
                 <li><a href="registration.php">Registration</a></li>
+                <?php
+                if (isset($user_role)) {
+                    ?>
+                    <li>
+                        <a href="index.php?logout=logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    </li>
+                    <?php
+                } ?>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

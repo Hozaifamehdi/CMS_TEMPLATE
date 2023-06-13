@@ -35,11 +35,11 @@ if (isset($_SESSION['user_name'])) {
                         class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        <a href="profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        <a href="../index.php?logout=logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                     </li>
                 </ul>
             </li>

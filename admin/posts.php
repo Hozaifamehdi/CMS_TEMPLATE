@@ -53,7 +53,6 @@ include("include/admin_navbar.php");
                         ?>
 
 
-
                         <?php
                         if (isset($_GET['edit'])) {
                             include("include/edit_posts.php");
@@ -69,8 +68,6 @@ include("include/admin_navbar.php");
                             </select>
                             <button name="post_submit_choice" class="btn btn-primary">Get posts</button>
                         </form>
-
-
 
 
 
