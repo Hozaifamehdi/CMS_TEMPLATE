@@ -101,6 +101,12 @@ if (isset($_POST['post'])) {
         <textarea name="post_content" required="required" class="form-control" id="summernote" rows="5"></textarea>
     </div>
 
+    <script>
+        $(document).ready(function () {
+            $('#summernote').summernote();
+        });
+    </script>
+
 
 
     <div class="mb-6">
