@@ -57,14 +57,6 @@ if (isset($_POST['comment'])) {
 
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-
-            <h1 class="page-header">
-                Page Heading
-                <small>
-                    <!-- Secondary Text -->
-
-                </small>
-            </h1>
             <!-- Php for data featching from database -->
 
             <?php
@@ -400,6 +392,7 @@ if (isset($_POST['comment'])) {
                 $cat_title_result = mysqli_query($isconnect, $cat_title_query);
 
                 // $cat_row = mysqli_fetch_assoc($cat_title_result);
+                $count=0;
                 while ($cat_row = mysqli_fetch_assoc($cat_title_result)) {
 
                     $cat_id = $cat_row['post_id'];
@@ -443,7 +436,14 @@ if (isset($_POST['comment'])) {
 
                         <hr>
                         <?php
+                        $count=$count+1;
                     }
+                }
+                if($count==0){
+                    ?>
+                    <h3>No result</h3>
+                    <hr/>
+                    <?php
                 }
             }
             ?>

@@ -43,14 +43,12 @@ if (isset($_POST["edit_post"])) {
     $post_content = $_POST['post_content'];
     $post_content= mysqli_real_escape_string($isconnect, $post_content);
     $post_tag = $_POST['post_tag'];
-    // $post_image = $_POST['post_image'];
+    $post_tag = mysqli_real_escape_string($isconnect, $post_tag);
 
     $post_image = $_FILES['post_image']['name'];
     $post_image_temp = $_FILES['post_image']['tmp_name'];
     $post_status = $_POST['post_status'];
-    // $post_time = $_POST['post_time'];
-    // $post_time = date('d-m-y');
-    // $post_catagory_id=$_POST[''];
+
 
     if (!$post_image) {
         $image_query = "select * from posts where post_id=$editId";

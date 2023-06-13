@@ -24,6 +24,15 @@ include("include/navigation.php");
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
+            <h3>
+                <?php
+                if (isset($_GET['logout'])) {
+                    session_destroy();
+                    echo "You are logout";
+                    header("location: index.php");
+                } ?>
+            </h3>
+
             <?php
 
             if (isset($_SESSION['user_name']) && isset($_SESSION['user_status'])) {
@@ -57,32 +66,34 @@ include("include/navigation.php");
 
 
             <?php
-            if (isset($_GET['page'])) {
-                $page = $_GET['page'];
-                if($page==1){
-                    $page1=0;
-                }else{
-                    $page = ($page * 5)-5;
-                }
+            // $page1=null;
+            // if (isset($_GET['page'])) {
+            //     $page = $_GET['page'];
+            //     if ($page == 1) {
+            //         $page1 = 0;
+            //     } else {
+            //         $page = ($page * 5) - 5;
+            //     }
 
-            } else {
-                $page = 0;
-                $page1=0;
-            }
+            // } else {
+            //     $page = 0;
+            //     $page1 = 0;
+            // }
 
             ?>
 
             <!-- Php for data featching from database -->
 
             <?php
+            // $post_query = "select * from posts";
+
+            // $post_count_fetch = mysqli_query($isconnect, $post_query);
+            // $post_count = mysqli_num_rows($post_count_fetch);
+            // $post_count = ceil($post_count / 5);
+
+            // $post_query = "SELECT * FROM `posts` LIMIT $page1 5";
+
             $post_query = "select * from posts";
-
-            $post_count_fetch = mysqli_query($isconnect, $post_query);
-            $post_count = mysqli_num_rows($post_count_fetch);
-            $post_count = ceil($post_count / 5);
-
-
-            $post_query = "select * from posts LIMIT $page1, 5";
             $post_query_fetch = mysqli_query($isconnect, $post_query);
 
             while ($row = mysqli_fetch_assoc($post_query_fetch)) {
@@ -189,9 +200,9 @@ include("include/navigation.php");
 
             <ul class="pager">
                 <?php
-                for ($i = 1; $i <= $post_count; $i++) {
-                    echo "<li><a href='index.php?page=$i'>$i</a></li>";
-                } ?>
+                // for ($i = 1; $i <= $post_count; $i++) {
+                //     echo "<li><a href='index.php?page=$i'>$i</a></li>";
+                // } ?>
             </ul>
 
         </div>
