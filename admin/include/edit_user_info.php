@@ -32,13 +32,18 @@ if (isset($_POST["edit_post"])) {
     $user_id=$_GET['edit'];
     
     $user_name = $_POST['user_name'];
+    $user_name = mysqli_real_escape_string($isconnect, $user_name);
     $user_email = $_POST['user_email'];
+    $user_email = mysqli_real_escape_string($isconnect, $user_email);
     $user_password = $_POST['user_password'];
+    $user_password = mysqli_real_escape_string($isconnect, $user_password);
     $user_phone_no = $_POST['user_phone_no'];
+    $user_phone_no = mysqli_real_escape_string($isconnect, $user_phone_no);
     // $user_image = $row['user_image'];
     $user_image = $_FILES['user_image']['name'];
     $user_image_temp = $_FILES['user_image']['tmp_name'];
     $user_role = $_POST['user_role'];
+    $user_role = mysqli_real_escape_string($isconnect, $user_role);
 
     if(!$user_image){
         $image_query = "select * from users where user_id=$user_id";

@@ -15,15 +15,18 @@ if (isset($_POST["post"])) {
 
     $post_catagory_id = $_POST['post_catagory_id'];
     $post_author = $_POST['post_author'];
+    $post_author = mysqli_real_escape_string($isconnect, $post_author);
     $post_title = $_POST['post_title'];
+    $post_title = mysqli_real_escape_string($isconnect, $post_title);
     $post_content = $_POST['post_content'];
     $post_content = mysqli_real_escape_string($isconnect, $post_content);
     $post_tag = $_POST['post_tag'];
-    // $post_image = $_POST['post_image'];
+    $post_tag = mysqli_real_escape_string($isconnect, $post_tag);
 
     $post_image = $_FILES['post_image']['name'];
     $post_image_temp = $_FILES['post_image']['tmp_name'];
     $post_status = $_POST['post_status'];
+    $post_status = mysqli_real_escape_string($isconnect, $post_status);
 
     move_uploaded_file($post_image_temp, "../image/$post_image");
 

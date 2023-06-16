@@ -30,6 +30,7 @@ include("include/admin_navbar.php");
                 echo "<h3><strong>Empty catagory can't added</strong></h3>";
             } else {
                 $cat_title = $_POST['cat_title'];
+                $cat_title = mysqli_real_escape_string($isconnect, $cat_title);
 
                 $search = "select * from  catagory";
                 $search_title = mysqli_query($isconnect, $search);

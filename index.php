@@ -122,48 +122,6 @@ include("include/navigation.php");
 
                     <p><span class="glyphicon glyphicon-time"></span>Posted on
                         <?php
-                        // $year=$row_time.substr
-                        // $date;
-                        // $month;
-                        // $year;
-                        // switch ($month) {
-                        //     case '1':
-                        //         # code...
-                        //         break;
-                        //     case '2':
-                        //         # code...
-                        //         break;
-                        //     case '3':
-                        //         # code...
-                        //         break;
-                        //     case '4':
-                        //         # code...
-                        //         break;
-                        //     case '5':
-                        //         # code...
-                        //         break;
-                        //     case '6':
-                        //         # code...
-                        //         break;
-                        //     case '7':
-                        //         # code...
-                        //         break;
-                        //     case '8':
-                        //         # code...
-                        //         break;
-                        //     case '9':
-                        //         # code...
-                        //         break;
-                        //     case '10':
-                        //         # code...
-                        //         break;
-                        //     case '11':
-                        //         # code...
-                        //         break;
-                        //     case '12':
-                        //         # code...
-                        //         break;
-                        // }
                         echo "$row_time";
                         ?>
                     </p>
