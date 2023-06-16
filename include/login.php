@@ -9,7 +9,11 @@ include("db.php");
 if (isset($_POST['login'])) {
 
     $useremail = $_POST['useremail'];
+    $useremail = mysqli_real_escape_string($isconnect, $useremail);
     $userpassword = $_POST['userpassword'];
+    $userpassword = mysqli_real_escape_string($isconnect, $userpassword);
+
+    
 
     $query = "SELECT * FROM `users` WHERE `user_email` = '$useremail' AND `user_password` LIKE '$userpassword'";
 

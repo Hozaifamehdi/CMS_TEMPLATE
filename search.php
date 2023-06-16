@@ -7,6 +7,10 @@ include("include/header.php");
 ?>
 
 <?php
+include("include/navigation.php");
+?>
+
+<?php
 
 function comment_incriment($isconnect, $post_id)
 {
@@ -23,9 +27,6 @@ function comment_incriment($isconnect, $post_id)
 ?>
 
 <!-- Navigation -->
-<?php
-include("include/navigation.php");
-?>
 
 <?php
 if (isset($_POST['comment'])) {
@@ -34,9 +35,11 @@ if (isset($_POST['comment'])) {
     $post_title = $_GET['row_title'];
 
     $user_name = $_POST['author_name'];
+    $user_name = mysqli_real_escape_string($isconnect, $user_name);
     $user_email = $_POST['email'];
+    $user_email = mysqli_real_escape_string($isconnect, $user_email);
     $user_comment = $_POST['post_comment'];
-
+    $user_comment = mysqli_real_escape_string($isconnect, $user_comment);
 
 
     $insert_comment_query = "INSERT INTO `comment` (`comment_post_id`, `comment_post_title`, `comment_author`, `comment_email`, `comment_content`) VALUES ('$post_id', '$post_title', '$user_name', '$user_email', '$user_comment')";

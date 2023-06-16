@@ -39,7 +39,9 @@ if (isset($_POST["edit_post"])) {
     // $post_id=$POST["edit_post"];
     $post_catagory_id = $_POST['post_catagory_id'];
     $post_author = $_POST['post_author'];
+    $post_author = mysqli_real_escape_string($isconnect, $post_author);
     $post_title = $_POST['post_title'];
+    $post_title = mysqli_real_escape_string($isconnect, $post_title);
     $post_content = $_POST['post_content'];
     $post_content= mysqli_real_escape_string($isconnect, $post_content);
     $post_tag = $_POST['post_tag'];
@@ -48,6 +50,7 @@ if (isset($_POST["edit_post"])) {
     $post_image = $_FILES['post_image']['name'];
     $post_image_temp = $_FILES['post_image']['tmp_name'];
     $post_status = $_POST['post_status'];
+    $post_status = mysqli_real_escape_string($isconnect, $post_status);
 
 
     if (!$post_image) {

@@ -4,12 +4,17 @@ $query_result;
 if (isset($_POST["add_user"])) {
 
     $user_name = $_POST["user_name"];
+    $user_name = mysqli_real_escape_string($isconnect, $user_name);
     $user_email = $_POST["user_email"];
+    $user_email = mysqli_real_escape_string($isconnect, $user_email);
     $user_password = $_POST["user_password"];
+    $user_password = mysqli_real_escape_string($isconnect, $user_password);
     $user_phone_no = $_POST["user_phone_no"];
+    $user_phone_no = mysqli_real_escape_string($isconnect, $user_phone_no);
     $user_image = $_FILES['user_image']['name'];
     $user_image_temp = $_FILES['user_image']['tmp_name'];
     $user_role = $_POST["user_role"];
+    $user_role = mysqli_real_escape_string($isconnect, $user_role);
 
     move_uploaded_file($user_image_temp, "../image/$user_image");
 

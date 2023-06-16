@@ -17,8 +17,19 @@ if (isset($_POST['submit'])) {
     $useremail = $_POST['email'];
     $useremail= mysqli_real_escape_string($isconnect, $useremail);
     $password = $_POST['password'];
-
     $password= mysqli_real_escape_string($isconnect, $password);
+
+    // $rand_salt = "select randsalt from users";
+    // $rand_salt_query= mysqli_query($isconnect, $rand_salt);
+    // if(!$rand_salt_query){
+    //     die("Query failed ". mysqli_error($isconnect));
+    // }
+
+    // $row = mysqli_fetch_array($rand_salt_query);
+    // $salt= $row['randsalt'];
+
+    // $password = crypt($password, $salt);
+
     $insert_registration_data = "INSERT INTO `users` (`user_name`, `user_email`, `user_password`) VALUES ('$username', '$useremail', '$password')";
 
     $registration_result = mysqli_query($isconnect, $insert_registration_data);
@@ -33,8 +44,11 @@ if (isset($_POST['submit'])) {
 
             <section id="login">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-xs-6 col-xs-offset-3">
+                    <!-- <div class="row"> -->
+                        
+                    <!-- <div> -->
+                    <div class="form-wrap" style="padding:20px 20vw">
+                    <div class="col-xs-6 col-xs-offset-3">
 
                             <?php
                                 echo "<h3>Email address already there!</h3>";
@@ -44,8 +58,7 @@ if (isset($_POST['submit'])) {
                             }
                         }
                     ?>
-                    <!-- <div> -->
-                    <div class="form-wrap" style="padding:20px 20vw">
+                    </br>
                         <h1>Register</h1>
                         <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
                             <div class="form-group">
@@ -73,7 +86,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <!-- </div> -->
                 </div> <!-- /.col-xs-12 -->
-            </div> <!-- /.row -->
+            <!-- </div> /.row -->
         </div> <!-- /.container -->
     </section>
 
