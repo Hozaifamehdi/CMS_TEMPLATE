@@ -27,6 +27,13 @@ include("include/navigation.php");
             <h3>
                 <?php
                 if (isset($_GET['logout'])) {
+
+                    // This piece of code is used to update data that uses are now offline
+                    $user_email = $_SESSION['user_email'];
+                    $offline_query= "UPDATE `users` SET `users_online` = '0' WHERE `users`.`user_email` = '$user_email'";
+                    $result_offline_query = mysqli_query($isconnect, $offline_query);
+                    // code end here
+
                     session_destroy();
                     echo "You are logout";
                     header("location: index.php");

@@ -189,7 +189,7 @@ include("include/admin_navbar.php");
                                             <?php echo $Status; ?>
                                         </td>
                                         <td>
-                                            <?php echo $Comment; ?>
+                                            <a href ="comment.php?specific_post=<?php echo $Id; ?>"><?php echo $Comment; ?></a>
                                         </td>
                                         <td>
                                             <?php echo $Date; ?>

@@ -19,16 +19,15 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
     $password= mysqli_real_escape_string($isconnect, $password);
 
-    // $rand_salt = "select randsalt from users";
-    // $rand_salt_query= mysqli_query($isconnect, $rand_salt);
-    // if(!$rand_salt_query){
-    //     die("Query failed ". mysqli_error($isconnect));
-    // }
 
-    // $row = mysqli_fetch_array($rand_salt_query);
-    // $salt= $row['randsalt'];
+    // code for encrypting
+    $hash="$2y$10$";
+    $salt="iusesomecrazystrings22";
 
-    // $password = crypt($password, $salt);
+    $hash_and_salt = $hash . $salt;
+
+    // encrypting  user password
+    $password = crypt($password, $hash_and_salt);
 
     $insert_registration_data = "INSERT INTO `users` (`user_name`, `user_email`, `user_password`) VALUES ('$username', '$useremail', '$password')";
 
