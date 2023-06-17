@@ -27,8 +27,17 @@ if (isset($_SESSION['user_name'])) {
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
 
-            <li><a href="../index.php">Home</a></li>
+            <?php 
+            // This is used to show numbers of users online in this website
+            
+                $No_of_users_online = "SELECT users_online FROM `users` WHERE `users_online` = 1";
+                $result_no_of_users_online = mysqli_query($isconnect, $No_of_users_online);
+                $count = mysqli_num_rows($result_no_of_users_online);
+            ?>
 
+            <li><a><?php echo $count.' users Online';?></a></li>
+
+            <li><a href="../index.php">Home</a></li>
 
             <li class="dropdown">
                 <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $user_name; ?> <b

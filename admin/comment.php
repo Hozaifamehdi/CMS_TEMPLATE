@@ -32,6 +32,18 @@ function comment_decriment($isconnect, $comment_post_id)
             <div class="col-lg-12">
 
                 <?php
+
+                if(isset($_GET['specific_post'])){
+                    $comment_id = $_GET['specific_post'];
+
+                    // comment_by_id_query for specific posts comments
+                    $comment_query = "SELECT * FROM `comment` WHERE `comment_post_id` = $comment_id";
+                    // $comment_result = mysqli_query($isconnect, $comment_by_id_query);
+                }
+                
+                ?>
+
+                <?php
                 if (isset($_GET['approve_status'])) {
 
                     $status_approve = $_GET['approve_status'];
@@ -39,7 +51,10 @@ function comment_decriment($isconnect, $comment_post_id)
                     if ($status_approve == 0) {
 
                         $change_status = "UPDATE `comment` SET `comment_status` = '1' WHERE `comment`.`comment_id` = $comment_id";
+
                         // $change_status="select * from comment where comment_id=$comment_id";
+
+
                         $change_status_result = mysqli_query($isconnect, $change_status);
 
                         if ($change_status_result) {
@@ -96,7 +111,9 @@ function comment_decriment($isconnect, $comment_post_id)
 
 
                 <?php
+                if(!isset($_GET['specific_post'])){
                 $comment_query = "select * from comment";
+                }
 
                 if (isset($_POST['submit_choice'])) {
 
@@ -160,8 +177,6 @@ function comment_decriment($isconnect, $comment_post_id)
                     ?>
                 </h3>
 
-
-
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
@@ -186,7 +201,10 @@ function comment_decriment($isconnect, $comment_post_id)
                         <?php
                         $comment_result = mysqli_query($isconnect, $comment_query);
 
+                        $count=0;
+
                         while ($row = mysqli_fetch_assoc($comment_result)) {
+                            $count++;
                             $comment_id = $row['comment_id'];
                             $comment_post_id = $row["comment_post_id"];
                             $comment_post_title = $row['comment_post_title'];
@@ -244,6 +262,11 @@ function comment_decriment($isconnect, $comment_post_id)
                                 </td>
                             </tr>
                             <?php
+                        }
+                        // This piece of code execute if there is no comments
+                        if($count==0){
+                            echo "<br/>";
+                            echo "<h3>No comments</h3>";
                         }
                         ?>
                     </tbody>
