@@ -124,12 +124,6 @@ if (isset($_POST['edit_post'])) {
             <option value="Admin" <?php $admin='Admin'; if ($user_role ==$admin) {
                        echo 'selected=selected';
                    } ?> >Admin</option>
-            <option value="Sub-admin" <?php $admin='Sub-admin'; if ($user_role ==$admin) {
-                       echo 'selected=selected';
-                   } ?>>Sub-admin</option>
-            <option value="Employee" <?php $admin='Employee'; if ($user_role ==$admin) {
-                       echo 'selected=selected';
-                   } ?>>Employee</option>
 
             <option value="subscriber" <?php $admin='subscriber'; if ($user_role ==$admin) {
                         echo 'selected=selected';
