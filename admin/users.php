@@ -65,34 +65,30 @@ include("include/admin_navbar.php");
                             <!-- This portion of code is used to delete a user information -->
                             <?php
 
-                            if (isset($_GET['delete'])) {
+                            if (isset($_GET['delete'])) {   
+                                if(isset($_SESSION['user_role'])){
+                                    
+                                    $user_id = $_GET['delete']; // user_id
+                                    $delete_user_id = "DELETE FROM `users` WHERE `users`.`user_id` = $user_id"; // query to delete user_id
+                                    $result_delete_user_id = mysqli_query($isconnect, $delete_user_id); // it return the result user_id delete or not
+                                                        
+                                    if ($result_delete_user_id) {
 
-                                $user_id = $_GET['delete']; // user_id
-                                $delete_user_id = "DELETE FROM `users` WHERE `users`.`user_id` = $user_id"; // query to delete user_id
-                                $result_delete_user_id = mysqli_query($isconnect, $delete_user_id); // it return the result user_id delete or not
-                
-                                if ($result_delete_user_id) {
-                                    echo "
-                                            <h1 class='page-header'>
-                                            $user_id deleted 
-                                            <small>Sucessfully</small>
-                                        </h1>
-                                        ";
+                                        echo "<h1 class='page-header'>
+                                        $user_id deleted 
+                                        <small>Sucessfully</small></h1>";
 
-                                } else {
+                                    } else {
 
+                                        echo "<h2 class='page-header'>
+                                        $user_id not delete sucessfully</h2> 
+                                        <small>Try again!</small>";
+                                    }                                                                 
 
-                                    echo "
-                                            <h2 class='page-header'>
-                                            $user_id not delete sucessfully</h2> 
-                                            <small>Try again!</small>
-                                        ";
                                 }
-
                             }
                             ?>
                             <!-- code end -->
-
 
 
 
@@ -142,7 +138,7 @@ include("include/admin_navbar.php");
                                             <!-- <td>User Id </td> -->
                                             <td>Name</td>
                                             <td>Email id </td>
-                                            <td>Password</td>
+                                            <!-- <td>Password</td> -->
                                             <td>Phone No</td>
                                             <td>Image</td>
                                             <td>Role</td>
@@ -163,8 +159,13 @@ include("include/admin_navbar.php");
                                         $user_id = $row['user_id'];
                                         $user_name = $row['user_name'];
                                         $user_email = $row['user_email'];
-                                        $user_password = $row['user_password'];
+                                        // $user_password = $row['user_password'];
                                         $user_phone_no = $row['user_phone_no'];
+
+                                        // If users phone number is empty in database
+                                        if($user_phone_no == null){
+                                            $user_phone_no = "NULL";
+                                        }
                                         $user_image = $row['user_image'];
                                         $user_role = $row['user_role'];
                                         $user_status = $row['user_status'];
@@ -182,9 +183,9 @@ include("include/admin_navbar.php");
                                                 <?php echo $user_email; ?>
                                             </td>
 
-                                            <td>
-                                                <?php echo $user_password; ?>
-                                            </td>
+                                            <!-- <td>
+                                                <?php //echo $user_password; ?>
+                                            </td> -->
 
                                             <td>
                                                 <?php echo $user_phone_no; ?>

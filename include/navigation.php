@@ -45,6 +45,7 @@
 
                         <?php
                     } elseif ($user_role == 'Admin') {
+                        $_SESSION['user_role']=$user_role;
                         ?>
 
                         <li><a href="admin?user_role=<?php echo $user_role; ?> & Admin=<?php echo $user_email ?>">Admin</a></li>

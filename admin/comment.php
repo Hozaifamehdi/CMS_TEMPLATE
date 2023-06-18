@@ -97,8 +97,8 @@ function comment_decriment($isconnect, $comment_post_id)
                     $delete_result = mysqli_query($isconnect, $delete_comment_query);
 
                     if ($delete_result) {
-                        echo "<h2>Posts deleted sucessfully</h2>";
-
+                        echo "<h2>Comment deleted sucessfully</h2>";
+                        // decriment number of comments 
                         comment_decriment($isconnect, $comment_post_id);
 
 

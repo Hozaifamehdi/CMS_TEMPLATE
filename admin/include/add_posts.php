@@ -84,11 +84,16 @@ if (isset($_POST['post'])) {
             ?>
         </select>
     </div>
-
+    <?php
+        if(isset($_SESSION['user_name'])){
+            $author_name = $_SESSION['user_name'];
+        }
+    ?>
+<!-- Redefine author name but author can change his name -->
     <div class="mb-6">
         <label for="post_author" class="form-label">Post Author</label>
         <input type="text" class="form-control" id="post_author" aria-describedby="emailHelp" required="required"
-            name="post_author">
+            name="post_author" value="<?php echo $author_name; ?>">
     </div>
 
     <div class="mb-6">

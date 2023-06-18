@@ -81,9 +81,7 @@ if (isset($_GET['edit'])) {
 
         <select name="user_role" class="form-control">
             <option value="Admin">Admin</option>
-            <option value="Sub-admin">Sub-admin</option>
-            <option value="Employee">Employee</option>
-            <!-- <option value=""></option> -->
+            <option value="subscriber">subscriber</option>
         </select>
     </div>
     <br />
