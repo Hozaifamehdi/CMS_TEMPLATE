@@ -84,56 +84,53 @@ if (isset($_POST['post'])) {
             ?>
         </select>
     </div>
+    <br />
     <?php
-        if(isset($_SESSION['user_name'])){
-            $author_name = $_SESSION['user_name'];
-        }
+    if (isset($_SESSION['user_name'])) {
+        $author_name = $_SESSION['user_name'];
+    }
     ?>
-<!-- Redefine author name but author can change his name -->
+    <!-- Redefine author name but author can change his name -->
     <div class="mb-6">
         <label for="post_author" class="form-label">Post Author</label>
-        <input type="text" class="form-control" id="post_author" aria-describedby="emailHelp" required="required"
-            name="post_author" value="<?php echo $author_name; ?>">
+        <input type="text" class="form-control" id="post_author" aria-describedby="emailHelp" required="required" name="post_author" value="<?php echo $author_name; ?>">
     </div>
+    <br />
 
     <div class="mb-6">
         <label for="post_title" class="form-label">Post Title</label>
-        <input type="text" class="form-control" id="post_title" aria-describedby="emailHelp" required="required"
-            name="post_title">
+        <input type="text" class="form-control" id="post_title" aria-describedby="emailHelp" required="required" name="post_title">
     </div>
-
-
+    <br />
 
     <div class="mb-6">
-        <label for="summernote" class="form-label">Post Content</label>
-        <textarea name="post_content" required="required" class="form-control" id="summernote" rows="5"></textarea>
+        <label for="editor" class="form-label">Post Content</label>
+        <textarea name="post_content" required="required" class="form-control" id="editor" rows="10"></textarea>
     </div>
+    <br />
 
     <script>
-        $(document).ready(function () {
-            $('#summernote').summernote();
+        ClassicEditor.create(document.querySelector("#editor")).catch(error => {
+            console.error(error);
         });
     </script>
-
 
 
     <div class="mb-6">
         <label for="post_content" class="form-label">Post Image</label>
         <input type="file" name="post_image">
     </div>
-
     <br />
 
     <div class="mb-6">
         <label for="post_status" class="form-label">Post Status</label>
-        <input type="text" class="form-control" id="post_status" aria-describedby="emailHelp" required="required"
-            name="post_status">
+        <input type="text" class="form-control" id="post_status" aria-describedby="emailHelp" required="required" name="post_status">
     </div>
+    <br />
 
     <div class="mb-6">
         <label for="post_tag" class="form-label">Post Tag</label>
-        <input type="text" class="form-control" id="post_title" aria-describedby="emailHelp" required="required"
-            name="post_tag" name="post_tag">
+        <input type="text" class="form-control" id="post_title" aria-describedby="emailHelp" required="required" name="post_tag" name="post_tag">
     </div>
     <br />
 

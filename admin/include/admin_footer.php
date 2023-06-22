@@ -11,12 +11,10 @@
 
 
 <script>
-    $(document).ready(function () {
-        // $("#summernote").summernote();
-        $('.dropdown-toggle').dropdown();
-    });
-
-</script>
+      ClassicEditor.create(document.querySelector("#editor")).catch(error => {
+        console.error(error);
+      });
+    </script>
 
 <script src="js/script.js"> </script>
 
