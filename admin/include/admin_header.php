@@ -40,7 +40,10 @@ include("../include/db.php");
     <link href="css/loader.css" rel="stylesheet">
 
      <!-- Summernote css file  -->
-     <link rel="stylesheet" href="css/summernote.css">
+     <!-- <link rel="stylesheet" href="css/summernote.css">-->
+
+
+     <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
 
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

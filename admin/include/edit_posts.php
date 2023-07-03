@@ -117,39 +117,44 @@ if (isset($_POST['edit_post'])) {
             ?>
         </select>
     </div>
+    <br/>
     <div class="mb-6">
         <label for="post_author" class="form-label">Post Author</label>
         <input type="text" class="form-control" id="post_author" aria-describedby="emailHelp" required="required"
             name="post_author" value="<?php echo $post_author; ?>">
     </div>
+    <br/>
 
     <div class="mb-6">
         <label for="post_title" class="form-label">Post Title</label>
         <input type="text" class="form-control" id="post_title" aria-describedby="emailHelp" required="required"
             name="post_title" value="<?php echo $post_title; ?>">
     </div>
-
+    <br/>
     <div class="mb-6">
-        <label for="your_summernote" class="form-label">Post Content</label>
-        <textarea name="post_content" required="required" class="form-control" id="your_summernote" rows="5"><?php echo $post_content; ?></textarea>
+        <label for="editor" class="form-label">Post Content</label>
+        <textarea name="post_content" required="required" class="form-control" id="editor" rows="5"><?php echo $post_content; ?></textarea>
     </div>
-
+    <br/>
+    <script>
+      ClassicEditor.create(document.querySelector("#editor")).catch(error => {
+        console.error(error);
+      });
+    </script>
     <br />
-
     <div><img src="../image/<?php echo $post_image; ?>" width="200px"></div>
 
     <div class="mb-6">
         <label for="post_image" class="form-label">Post Image</label>
         <input type="file" name="post_image" value="../image/<?php echo $post_image; ?>">
     </div>
-
     <br />
     <div class="mb-6">
         <label for="post_status" class="form-label">Post Status</label>
         <input type="text" class="form-control" id="post_status" aria-describedby="emailHelp" required="required"
             name="post_status" value="<?php echo $post_status; ?>">
     </div>
-
+    <br/>
     <div class="mb-6">
         <label for="post_tag" class="form-label">Post Tag</label>
         <input type="text" class="form-control" id="post_title" aria-describedby="emailHelp" required="required"

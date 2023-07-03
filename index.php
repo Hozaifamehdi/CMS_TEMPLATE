@@ -74,10 +74,10 @@ include("include/navigation.php");
             <?php
             if(isset($_GET['page'])){
                 $page = $_GET['page'];
-                $page1=$page-1;
-                $page1=$page1 * 5;
+                $page1 =  $page - 1;
+                $page1b = $page1 * 5;
             }else{
-                $page1=0;
+                $page1 = 0;
             }
             ?>
 
@@ -143,23 +143,25 @@ include("include/navigation.php");
             } ?>
 
             <!-- First Blog Post -->
-
-            <!-- Pager
-            <ul class="pager">
-                <li class="previous">
-                    <a href="#">&larr; Older</a>
-                </li>
-                <li class="next">
-                    <a href="#">Newer &rarr;</a>
-                </li>
-            </ul> -->
-
             <ul class="pager">
                 <?php
                 for ($i = 1; $i <= $post_count; $i++) {
                     echo "<li><a href='index.php?page=$i'>$i</a></li>";
                 } ?>
             </ul>
+
+            Pager
+            <ul class="pager">
+                <li class="previous">
+                    <?php $i = $i - 1;?>
+                    <a href="index.php?page=<?php echo $i; ?>">&larr; Older</a>
+                </li>
+                <li class="next">
+                    <?php $i = $i + 1;?>
+                    <a href="index.php?page=<?php echo $i; ?>">Newer &rarr;</a>
+                </li>
+            </ul>
+
 
         </div>
         <!-- Sidebar -->
